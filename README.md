@@ -1,6 +1,6 @@
 # nsaicomponents
 
-🎯 A customizable and lightweight loading spinner, dots, and skeleton component for **React** .
+🌟 A customizable and lightweight component library for **React** , featuring loaders, buttons, and modals.
 
 ---
 
@@ -12,7 +12,7 @@ npm install nsaicomponents
 
 ---
 
-## ✨ Usage (Web)
+## 🌟 Loader Usage (Web)
 
 ```jsx
 import Loader from "nsaicomponents";
@@ -31,7 +31,7 @@ const MyComponent = () => (
 
 ---
 
-## ✨ Usage (React Native)
+## 🌟 Loader Usage ()
 
 ```jsx
 import Loader from "nsaicomponents";
@@ -51,41 +51,105 @@ const MyComponent = () => (
 
 ---
 
-## 📦 API Reference
+## 📦 API Reference: Loader
 
-| Prop        | Type                                | Default       | Description                                         |
-| ----------- | ----------------------------------- | ------------- | --------------------------------------------------- |
-| `size`      | `number`                            | `40`          | Size of the spinner or dots.                        |
-| `color`     | `string`                            | auto-detected | Loader color. Defaults based on light/dark theme.   |
-| `loading`   | `boolean`                           | `true`        | Whether to display the loader.                      |
-| `variant`   | `"default" \| "dots" \| "skeleton"` | `"default"`   | Select loader type: spinner, bouncing dots, or bar. |
-| `speed`     | `number`                            | `1`           | Animation speed in seconds.                         |
-| `thickness` | `number`                            | `4`           | Spinner border thickness (`default` variant only).  |
-| `children`  | `ReactNode`                         | —             | Optional content shown below/in the loader.         |
-
----
-
-## 💡 Notes
-
-- 🎨 Automatically detects **dark mode** and adjusts color unless manually set.
-- 💻 Works seamlessly across **React** and **React Native** via platform-specific entry points (`.web.js` / `.native.js`).
+| Prop        | Type        | Default       | Description                                        |             |                                                     |
+| ----------- | ----------- | ------------- | -------------------------------------------------- | ----------- | --------------------------------------------------- |
+| `size`      | `number`    | `40`          | Size of the spinner or dots.                       |             |                                                     |
+| `color`     | `string`    | auto-detected | Loader color. Defaults based on light/dark theme.  |             |                                                     |
+| `loading`   | `boolean`   | `true`        | Whether to display the loader.                     |             |                                                     |
+| `variant`   | \`"default" | "dots"        | "skeleton"\`                                       | `"default"` | Select loader type: spinner, bouncing dots, or bar. |
+| `speed`     | `number`    | `1`           | Animation speed in seconds.                        |             |                                                     |
+| `thickness` | `number`    | `4`           | Spinner border thickness (`default` variant only). |             |                                                     |
+| `children`  | `ReactNode` | —             | Optional content shown below/in the loader.        |             |                                                     |
 
 ---
 
-## 🛠 Coming Soon
+## 💪 Button Usage (Web )
 
-- `<Button variant="primary" | "secondary" />`
-- Theming support
-- TypeScript types
+```jsx
+import { Button } from "nsaicomponents";
+
+<Button
+  variant="primary" // "primary" | "secondary" | "outlined"
+  loading={false} // show loader inside
+  disabled={false}
+  onClick={() => alert("Clicked")}
+>
+  Click Me
+</Button>;
+```
 
 ---
 
-## 📄 License
+## 📦 API Reference: Button
+
+| Prop       | Type        | Default     | Description                              |             |                             |
+| ---------- | ----------- | ----------- | ---------------------------------------- | ----------- | --------------------------- |
+| `variant`  | \`"primary" | "secondary" | "outlined"\`                             | `"primary"` | Visual style of the button. |
+| `loading`  | `boolean`   | `false`     | Show a spinner inside the button.        |             |                             |
+| `disabled` | `boolean`   | `false`     | Disables the button and reduces opacity. |             |                             |
+| `onClick`  | `function`  | —           | Called when the button is clicked.       |             |                             |
+| `style`    | `object`    | `{}`        | Inline style overrides.                  |             |                             |
+| `children` | `ReactNode` | —           | Content of the button.                   |             |                             |
+
+---
+
+## 🏠 Modal Usage (Web)
+
+```jsx
+import { Modal } from "nsaicomponents";
+
+<Modal
+  open={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Example Modal"
+  closeOnEscape={true} // Optional (default false)
+  closeOnBackdropClick={true} // Optional (default true)
+  showClose={true}
+  actions={
+    <>
+      <Button variant="outlined" onClick={() => setIsOpen(false)}>
+        Cancel
+      </Button>
+      <Button onClick={handleSubmit}>Submit</Button>
+    </>
+  }
+>
+  Modal content goes here.
+</Modal>;
+```
+
+---
+
+## 📦 API Reference: Modal
+
+| Prop                   | Type        | Default    | Description                                        |            |                                |
+| ---------------------- | ----------- | ---------- | -------------------------------------------------- | ---------- | ------------------------------ |
+| `open`                 | `boolean`   | `false`    | Controls modal visibility.                         |            |                                |
+| `onClose`              | `function`  | `() => {}` | Called when the modal should be closed.            |            |                                |
+| `title`                | `string`    | —          | Optional title at the top of the modal.            |            |                                |
+| `children`             | `ReactNode` | —          | Modal body content.                                |            |                                |
+| `actions`              | `ReactNode` | —          | Footer actions area (e.g., buttons).               |            |                                |
+| `showClose`            | `boolean`   | `true`     | Show a top-right close icon.                       |            |                                |
+| `showBackdrop`         | `boolean`   | `true`     | Show a dimmed background behind the modal.         |            |                                |
+| `closeOnBackdropClick` | `boolean`   | `true`     | Clicking outside closes the modal.                 |            |                                |
+| `closeOnEscape`        | `boolean`   | `false`    | Pressing `Escape` closes the modal.                |            |                                |
+| `width`                | `number`    | `400`      | Modal width (ignored if `fullWidth` is true).      |            |                                |
+| `maxWidth`             | \`"sm"      | "md"       | "lg"\`                                             | `"md"`     | Max width breakpoint.          |
+| `fullWidth`            | `boolean`   | `false`    | Makes modal stretch to full container width.       |            |                                |
+| `position`             | \`"center"  | "top"      | ...\`                                              | `"center"` | Position of modal in viewport. |
+| `style`                | `object`    | `{}`       | Inline style override.                             |            |                                |
+| `className`            | `string`    | `""`       | Optional className for container (for custom CSS). |            |                                |
+
+---
+
+## 📃 License
 
 [ISC](./LICENSE)
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💼 Author
 
-Made with ❤️ by [Nizampatnam Sai](https://github.com/NizampatnamSai)
+Made with ❤️ by [Nizampatnam Sai](https://github.com/NizampatnamSai/npm-nsaicomponents)

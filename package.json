@@ -1,6 +1,6 @@
 {
   "name": "nsaicomponents",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/main.js",
   "react-native": "src/App.native.js",

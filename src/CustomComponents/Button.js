@@ -18,14 +18,32 @@ const variantStyles = {
   },
 };
 
+const sizeStyles = {
+  small: {
+    padding: "4px 10px",
+    fontSize: 12,
+  },
+  medium: {
+    padding: "8px 16px",
+    fontSize: 14,
+  },
+  large: {
+    padding: "12px 22px",
+    fontSize: 16,
+  },
+};
+
 const Button = ({
   children,
   variant = "primary",
+  size = "medium",
+  type = "button",
   style = {},
+  fullWidth = false,
   disabled = false,
   loading = false,
   loadingPosition = "start", // 'start' | 'end' | 'center'
-  hideChildrenWhenLoading = true,
+  hideChildrenWhenLoading = false,
   onClick,
   ...props
 }) => {
@@ -53,25 +71,34 @@ const Button = ({
 
   return (
     <button
+      type={type}
+      disabled={isDisabled}
+      aria-busy={loading}
+      onClick={onClick}
       style={{
-        padding: "8px 16px",
-        fontSize: 14,
-        borderRadius: 4,
+        ...variantStyles[variant],
+        ...sizeStyles[size],
         display: "inline-flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent:
+          loading && loadingPosition === "center" ? "center" : "center",
+        width: fullWidth ? "100%" : "auto",
+        borderRadius: 4,
         cursor: isDisabled ? "not-allowed" : "pointer",
         opacity: isDisabled ? 0.5 : 1,
-        ...variantStyles[variant],
+        transition: "all 0.2s ease",
         ...style,
       }}
-      disabled={isDisabled}
-      onClick={onClick}
       {...props}
     >
       {loading && loadingPosition === "start" && Spinner}
-      {!hideChildrenWhenLoading && children}
+
+      {/* ✅ FIXED: children rendering */}
+      {!loading || !hideChildrenWhenLoading ? children : null}
+
       {loading && loadingPosition === "end" && Spinner}
+
+      {/* Center loader overlaps children visually, so still render them underneath if needed */}
       {loading && loadingPosition === "center" && Spinner}
     </button>
   );

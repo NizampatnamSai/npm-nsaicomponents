@@ -153,3 +153,6 @@ import { Modal } from "nsaicomponents";
 ## 👨‍💼 Author
 
 Made with ❤️ by [Nizampatnam Sai](https://github.com/NizampatnamSai/npm-nsaicomponents)
+
+deboaunse
+digit, decimal, like funtions

@@ -1,42 +1,64 @@
 import React from "react";
 
-const variantStyles = {
-  primary: {
-    backgroundColor: "#1976d2",
-    color: "#fff",
-    border: "none",
-  },
-  secondary: {
-    backgroundColor: "#e0e0e0",
-    color: "#000",
-    border: "none",
-  },
-  outlined: {
-    backgroundColor: "transparent",
-    color: "#1976d2",
-    border: "1px solid #1976d2",
-  },
+const defaultColors = {
+  primary: "#1976d2",
+  secondary: "#9c27b0",
+  inherit: "inherit",
+  success: "green",
+};
+
+const variantStyles = (variant, colorValue) => {
+  switch (variant) {
+    case "contained":
+      return {
+        backgroundColor: colorValue,
+        color: "#fff",
+        border: "none",
+        boxShadow:
+          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+      };
+    case "outlined":
+      return {
+        backgroundColor: "transparent",
+        color: colorValue,
+        border: `1px solid ${colorValue}`,
+      };
+    case "text":
+    default:
+      return {
+        backgroundColor: "transparent",
+        color: colorValue,
+        border: "none",
+      };
+  }
 };
 
 const sizeStyles = {
   small: {
     padding: "4px 10px",
-    fontSize: 12,
+    fontSize: 13,
+    minWidth: 64,
+    height: 32,
   },
   medium: {
-    padding: "8px 16px",
+    padding: "8px 14px",
     fontSize: 14,
+    minWidth: 64,
+    height: 36,
   },
   large: {
-    padding: "12px 22px",
-    fontSize: 16,
+    padding: "8px 22px",
+    fontSize: 15,
+    minWidth: 64,
+    height: 40,
   },
 };
 
 const Button = ({
   children,
-  variant = "primary",
-  size = "medium",
+  variant = "contained", // 'text' | 'outlined' | 'contained'
+  color = "primary", // can be a string like 'primary' or custom like '#f44336'
+  size = "medium", // 'small' | 'medium' | 'large'
   type = "button",
   style = {},
   fullWidth = false,
@@ -44,10 +66,15 @@ const Button = ({
   loading = false,
   loadingPosition = "start", // 'start' | 'end' | 'center'
   hideChildrenWhenLoading = false,
+  textDecoration = "none",
+  textTransform = "uppercase",
   onClick,
   ...props
 }) => {
   const isDisabled = disabled || loading;
+
+  // Resolve color value
+  const colorValue = defaultColors[color] || color;
 
   const Spinner = (
     <span
@@ -59,6 +86,7 @@ const Button = ({
         borderRadius: "50%",
         animation: "spin 1s linear infinite",
         display: "inline-block",
+        flexShrink: 0,
         margin:
           loadingPosition === "start"
             ? "0 8px 0 0"
@@ -70,35 +98,47 @@ const Button = ({
   );
 
   return (
-    <button
-      type={type}
-      disabled={isDisabled}
-      aria-busy={loading}
-      onClick={onClick}
-      style={{
-        ...variantStyles[variant],
-        ...sizeStyles[size],
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent:
-          loading && loadingPosition === "center" ? "center" : "center",
-        width: fullWidth ? "100%" : "auto",
-        borderRadius: 4,
-        cursor: isDisabled ? "not-allowed" : "pointer",
-        opacity: isDisabled ? 0.5 : 1,
-        transition: "all 0.2s ease",
-        ...style,
-      }}
-      {...props}
-    >
-      {loading && loadingPosition === "start" && Spinner}
+    <>
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
 
-      {!loading || !hideChildrenWhenLoading ? children : null}
-
-      {loading && loadingPosition === "end" && Spinner}
-
-      {loading && loadingPosition === "center" && Spinner}
-    </button>
+      <button
+        type={type}
+        disabled={isDisabled}
+        aria-busy={loading}
+        onClick={onClick}
+        style={{
+          ...variantStyles(variant, colorValue),
+          ...sizeStyles[size],
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent:
+            loading && loadingPosition === "center" ? "center" : "center",
+          width: fullWidth ? "100%" : "auto",
+          borderRadius: 4,
+          cursor: isDisabled ? "not-allowed" : "pointer",
+          opacity: isDisabled ? 0.5 : 1,
+          transition: "all 0.2s ease",
+          textDecoration,
+          textTransform,
+          lineHeight: 1.5,
+          fontFamily: "inherit",
+          ...style,
+        }}
+        {...props}
+      >
+        {loading && loadingPosition === "start" && Spinner}
+        {!loading || !hideChildrenWhenLoading ? children : null}
+        {loading && loadingPosition === "end" && Spinner}
+        {loading && loadingPosition === "center" && Spinner}
+      </button>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "nsaicomponents",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Lightweight, customizable UI components for React including Modal, Button, and Loader",
   "main": "dist/main.js",
   "homepage": "https://github.com/NizampatnamSai/npm-nsaicomponents",

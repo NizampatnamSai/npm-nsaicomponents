@@ -87,6 +87,7 @@
 // src/index.js
 export { default as Loader } from "./CustomComponents/Loader";
 export { default as Button } from "./CustomComponents/Button";
+export { default as Modal } from "./CustomComponents/Modal";
 
 // export const Loader = CustomLoader;
 // export const Input = CustomInput;

@@ -29,7 +29,7 @@ const Loader = ({
     const isDark =
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    return isDark ? "#fff" : "dodgerblue";
+    return isDark ? "#1976d2" : "dodgerblue";
   };
 
   if (!loading) return null;

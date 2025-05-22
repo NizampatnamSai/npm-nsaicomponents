@@ -84,14 +84,18 @@ import { Button } from "nsaicomponents";
 
 ## 📦 API Reference: Button
 
-| Prop       | Type        | Default     | Description                              |             |                             |
-| ---------- | ----------- | ----------- | ---------------------------------------- | ----------- | --------------------------- |
-| `variant`  | \`"primary" | "secondary" | "outlined"\`                             | `"primary"` | Visual style of the button. |
-| `loading`  | `boolean`   | `false`     | Show a spinner inside the button.        |             |                             |
-| `disabled` | `boolean`   | `false`     | Disables the button and reduces opacity. |             |                             |
-| `onClick`  | `function`  | —           | Called when the button is clicked.       |             |                             |
-| `style`    | `object`    | `{}`        | Inline style overrides.                  |             |                             |
-| `children` | `ReactNode` | —           | Content of the button.                   |             |                             |
+| Prop                      | Type                                     | Default     | Description                  |
+| ------------------------- | ---------------------------------------- | ----------- | ---------------------------- |
+| `variant`                 | `"primary" \| "secondary" \| "outlined"` | `"primary"` | Button styling               |
+| `size`                    | `"small" \| "medium" \| "large"`         | `"medium"`  | Size and padding             |
+| `fullWidth`               | `boolean`                                | `false`     | Makes button take 100% width |
+| `disabled`                | `boolean`                                | `false`     | Disables interaction         |
+| `loading`                 | `boolean`                                | `false`     | Shows loader                 |
+| `loadingPosition`         | `"start" \| "end" \| "center"`           | `"start"`   | Position of spinner          |
+| `hideChildrenWhenLoading` | `boolean`                                | `false`     | Hides children when loading  |
+| `type`                    | `"button" \| "submit" \| "reset"`        | `"button"`  | HTML button type             |
+| `style`                   | `React.CSSProperties`                    | `{}`        | Custom styles                |
+| `onClick`                 | `function`                               | —           | Click handler                |
 
 ---
 

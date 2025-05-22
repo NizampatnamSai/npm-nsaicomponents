@@ -93,12 +93,10 @@ const Button = ({
     >
       {loading && loadingPosition === "start" && Spinner}
 
-      {/* ✅ FIXED: children rendering */}
       {!loading || !hideChildrenWhenLoading ? children : null}
 
       {loading && loadingPosition === "end" && Spinner}
 
-      {/* Center loader overlaps children visually, so still render them underneath if needed */}
       {loading && loadingPosition === "center" && Spinner}
     </button>
   );

@@ -1,29 +1,45 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/App.web.js", // 👈 make sure it points to web version
+  entry: "./src/App.web.js", // ✅ Entry to your component root
   mode: "production",
 
   output: {
-    path: path.resolve("dist"),
+    path: path.resolve(__dirname, "dist"),
     filename: "main.js",
-    libraryTarget: "commonjs",
+    library: {
+      type: "commonjs2", // ✅ Correct type for Node + NPM compatibility
+    },
+    clean: true, // ✅ Cleans /dist before each build
   },
+
   resolve: {
-    extensions: [".web.js", ".js", ".jsx", ".json"], // 👈 optional but good practice
+    extensions: [".web.js", ".js", ".jsx", ".json"],
   },
+
+  externals: {
+    // ✅ Prevent bundling react and react-dom
+    react: "react",
+    "react-dom": "react-dom",
+  },
+
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: "babel-loader",
         exclude: /node_modules/,
-        options: {
-          presets: ["@babel/preset-react"],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env", // ✅ Include env preset for better transpilation
+              "@babel/preset-react",
+            ],
+          },
         },
       },
       {
-        test: /\.css?$/i,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
     ],

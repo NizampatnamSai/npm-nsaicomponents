@@ -81,43 +81,49 @@ onClick={() => alert("Clicked")}
 import { Modal } from "nsaicomponents";
 
 <Modal
-open={isOpen}
-onClose={() => setIsOpen(false)}
-title="Example Modal"
-closeOnEscape={true}
-closeOnBackdropClick={true}
-showClose={true}
-actions={
-<>
-<Button variant="outlined" onClick={() => setIsOpen(false)}>
-Cancel
-</Button>
-<Button onClick={handleSubmit}>Submit</Button>
-</>
-}
+  open={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Example Modal"
+  closeOnEscape={true}
+  closeOnBackdropClick={true}
+  showClose={true}
+  size="md"
+  fullScreen={false}
+  actions={
+    <>
+      <Button variant="outlined" onClick={() => setIsOpen(false)}>
+        Cancel
+      </Button>
+      <Button onClick={handleSubmit}>Submit</Button>
+    </>
+  }
+>
+  Modal content goes here.
+</Modal>
 
-> Modal content goes here.
-> </Modal>;
 
 📦 API Reference: Modal
 
-| Prop                   | Type                   | Default    | Description                                       |
-| ---------------------- | ---------------------- | ---------- | ------------------------------------------------- |
-| `open`                 | `boolean`              | `false`    | Controls modal visibility                         |
-| `onClose`              | `function`             | `() => {}` | Called when the modal should be closed            |
-| `title`                | `string`               | —          | Optional title at the top of the modal            |
-| `children`             | `ReactNode`            | —          | Modal body content                                |
-| `actions`              | `ReactNode`            | —          | Footer actions area (e.g., buttons)               |
-| `showClose`            | `boolean`              | `true`     | Show a top-right close icon                       |
-| `showBackdrop`         | `boolean`              | `true`     | Show a dimmed background behind the modal         |
-| `closeOnBackdropClick` | `boolean`              | `true`     | Clicking outside closes the modal                 |
-| `closeOnEscape`        | `boolean`              | `false`    | Pressing `Escape` closes the modal                |
-| `width`                | `number`               | `400`      | Modal width (ignored if `fullWidth` is true)      |
-| `maxWidth`             | `"sm" \| "md" \| "lg"` | `"md"`     | Max width breakpoint                              |
-| `fullWidth`            | `boolean`              | `false`    | Makes modal stretch to full container width       |
-| `position`             | `"center" \| "top"`    | `"center"` | Position of modal in viewport                     |
-| `style`                | `object`               | `{}`       | Inline style override                             |
-| `className`            | `string`               | `""`       | Optional className for container (for custom CSS) |
+| Prop                   | Type                                                 | Default    | Description                                                     |
+| ---------------------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------------- |
+| `open`                 | `boolean`                                            | `false`    | Controls modal visibility                                       |
+| `onClose`              | `() => void`                                         | `() => {}` | Called when the modal should be closed                          |
+| `title`                | `string`                                             | —          | Optional title shown in the top-left corner                     |
+| `children`             | `ReactNode`                                          | —          | Modal content body (scrollable if overflowing)                  |
+| `actions`              | `ReactNode`                                          | —          | Modal footer actions (e.g., buttons); stays fixed at the bottom |
+| `showClose`            | `boolean`                                            | `true`     | Shows the close `×` icon at the top-right corner                |
+| `showBackdrop`         | `boolean`                                            | `true`     | Whether to show a dimmed backdrop behind the modal              |
+| `closeOnBackdropClick` | `boolean`                                            | `true`     | Clicking outside the modal will close it                        |
+| `closeOnEscape`        | `boolean`                                            | `false`    | Pressing the `Escape` key closes the modal                      |
+| `size`                 | `"sm" \| "md" \| "lg"`                               | `"md"`     | Predefined width sizes (`360`, `600`, `960` px)                 |
+| `fullScreen`           | `boolean`                                            | `false`    | Makes the modal occupy full viewport (100% width & height)      |
+| `position`             | `"center" \| "top" \| "bottom" \| "left" \| "right"` | `"center"` | Position of the modal in the viewport                           |
+| `style`                | `React.CSSProperties`                                | `{}`       | Inline styles for the modal container                           |
+| `className`            | `string`                                             | `""`       | Custom  classname for outer container styling |
+
+
+
+
 
 🛡️ CustomBackdrop Usage
 
@@ -145,16 +151,5 @@ Made with ❤️ by Nizampatnam Sai
 
 ---
 
-Let me know if you'd like me to:
-
-- Add **GIF or images** of the components?
-- Generate `CustomBackdrop.jsx` for production now?
-- Convert this to `README.md` file and export?
-
-Ready to help you ship it!
-
-```
-
-```
 
 ```

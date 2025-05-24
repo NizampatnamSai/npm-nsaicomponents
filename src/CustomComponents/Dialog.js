@@ -1,6 +1,10 @@
+// Dialog.js
+
 import React from "react";
 
-export const Dialog = ({ open, onClose, children }) => {
+// ... your Dialog, DialogTitle, etc.
+
+const DialogComponent = ({ open, onClose, children }) => {
   if (!open) return null;
 
   const backdropStyle = {
@@ -34,7 +38,7 @@ export const Dialog = ({ open, onClose, children }) => {
   );
 };
 
-export const DialogTitle = ({ children }) => {
+const DialogTitle = ({ children }) => {
   const titleStyle = {
     fontSize: "1.25rem",
     fontWeight: "600",
@@ -44,14 +48,14 @@ export const DialogTitle = ({ children }) => {
   return <div style={titleStyle}>{children}</div>;
 };
 
-export const DialogContent = ({ children }) => {
+const DialogContent = ({ children }) => {
   const contentStyle = {
     padding: "16px",
   };
   return <div style={contentStyle}>{children}</div>;
 };
 
-export const DialogContentText = ({ children }) => {
+const DialogContentText = ({ children }) => {
   const textStyle = {
     margin: 0,
     color: "#555",
@@ -59,7 +63,7 @@ export const DialogContentText = ({ children }) => {
   return <p style={textStyle}>{children}</p>;
 };
 
-export const DialogActions = ({ children }) => {
+const DialogActions = ({ children }) => {
   const actionsStyle = {
     display: "flex",
     justifyContent: "flex-end",
@@ -68,4 +72,13 @@ export const DialogActions = ({ children }) => {
     borderTop: "1px solid #ddd",
   };
   return <div style={actionsStyle}>{children}</div>;
+};
+
+// ✅ Exporting all at once
+export {
+  DialogComponent as Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 };

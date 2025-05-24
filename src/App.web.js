@@ -89,7 +89,14 @@ export { default as Loader } from "./CustomComponents/Loader";
 export { default as Button } from "./CustomComponents/Button";
 export { default as Modal } from "./CustomComponents/Modal";
 export { default as CustomBackdrop } from "./CustomComponents/CustomBackdrop";
-export { default as Dialog } from "./CustomComponents/Dialog";
+// export { default as Dialog } from "./CustomComponents/Dialog";
+export {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "./CustomComponents/Dialog";
 
 // export const Loader = CustomLoader;
 // export const Input = CustomInput;

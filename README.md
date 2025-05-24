@@ -1,6 +1,6 @@
 # nsaicomponents
 
-🌟 A customizable and lightweight component library for **React**, featuring loaders, buttons, modals, and backdrop overlays.
+🌟 A customizable and lightweight component library for **React**, featuring loaders, buttons, modals, and backdrop overlays & Dialogs.
 
 ---
 
@@ -142,6 +142,81 @@ import { CustomBackdrop } from "nsaicomponents";
 | `color`    | `string`    | `"#000"`    | Backdrop background color                  |
 | `style`    | `object`    | `{}`        | Custom inline styles                       |
 | `children` | `ReactNode` | —           | Optional elements placed inside backdrop   |
+
+
+
+
+🗨️ Dialog Usage
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "nsaicomponents";
+
+<Dialog open={true} onClose={() => alert("Closed")}>
+  <DialogTitle>Confirm Action</DialogTitle>
+  <DialogContent>
+    <DialogContentText>
+      Are you sure you want to continue?
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions>
+    <button onClick={() => alert("Cancel")}>Cancel</button>
+    <button onClick={() => alert("Confirm")}>Confirm</button>
+  </DialogActions>
+</Dialog>;
+
+
+📦 API Reference: Dialog
+🔹 Dialog
+| Prop       | Type        | Default     | Description                                         |
+| ---------- | ----------- | ----------- | --------------------------------------------------- |
+| `open`     | `boolean`   | `false`     | Controls visibility of the dialog                   |
+| `onClose`  | `function`  | `undefined` | Called when backdrop is clicked to close the dialog |
+| `children` | `ReactNode` | —           | Dialog content (title, text, actions, etc.)         |
+
+🔹 DialogTitle
+| Prop       | Type        | Description               |
+| ---------- | ----------- | ------------------------- |
+| `children` | `ReactNode` | Title text for the dialog |
+
+🔹 DialogContent
+| Prop       | Type        | Description                    |
+| ---------- | ----------- | ------------------------------ |
+| `children` | `ReactNode` | Main content inside the dialog |
+
+
+🔹 DialogContentText
+| Prop       | Type        | Description                   |
+| ---------- | ----------- | ----------------------------- |
+| `children` | `ReactNode` | Text description or paragraph |
+
+
+🔹 DialogActions
+| Prop       | Type        | Description                       |
+| ---------- | ----------- | --------------------------------- |
+| `children` | `ReactNode` | Action buttons (e.g., Cancel, OK) |
+
+
+🎨 Styling Notes
+Dialog is centered on the screen with a semi-transparent black backdrop.
+
+Backdrop closes the dialog when clicked (onClose is triggered).
+
+Clicking inside the dialog will not close it (event propagation is stopped).
+
+Dialog width is capped at 500px and styled with padding and drop shadow.
+
+Easily extendable with inline styles or by wrapping components.
+
+
+
+
+
+
+
 
 📃 License
 ISC

@@ -274,24 +274,61 @@ Supports all React versions
 
 
 
-📦 API Reference
 
 
-| Prop           | Type        | Default   | Description                                      |          |         |           |
-| -------------- | ----------- | --------- | ------------------------------------------------ | -------- | ------- | --------- |
-| `variant`      | `string`    | `"body1"` | Typography style (`h1`–`h6`, `body1`, `caption`) |          |         |           |
-| `as`           | `string`    | —         | Override HTML tag                                |          |         |           |
-| `children`     | `ReactNode` | —         | Text or elements inside                          |          |         |           |
-| `color`        | `string`    | `"#000"`  | Text color                                       |          |         |           |
-| `fontWeight`   | `number`    | auto      | Font weight override                             |          |         |           |
-| `align`        | `string`    | `"left"`  | `left`                                           | `center` | `right` | `justify` |
-| `gutterBottom` | `boolean`   | `false`   | Adds margin-bottom                               |          |         |           |
-| `noWrap`       | `boolean`   | `false`   | Truncates long text with ellipsis                |          |         |           |
-| `style`        | `object`    | `{}`      | Additional styles                                |          |         |           |
+🧠 Usage
+import Typography from "nsaicomponents";
+
+function App() {
+  return (
+    <>
+      <Typography variant="h4" color="#1976d2" gutterBottom>
+        Hello Typography
+      </Typography>
+
+      <Typography variant="body1">
+        This is a paragraph with default styles.
+      </Typography>
+
+      <Typography as="span" style={{ color: "red" }}>
+        Custom tag with inline style
+      </Typography>
+    </>
+  );
+}
+
+🔤 Variants
+Supports the following variant values
+| Variant     | Tag  | Font Size | Font Weight |
+| ----------- | ---- | --------- | ----------- |
+| `h1`        | h1   | 6rem      | 300         |
+| `h2`        | h2   | 3.75rem   | 300         |
+| `h3`        | h3   | 3rem      | 400         |
+| `h4`        | h4   | 2.125rem  | 400         |
+| `h5`        | h5   | 1.5rem    | 400         |
+| `h6`        | h6   | 1.25rem   | 500         |
+| `subtitle1` | p    | 1rem      | 400         |
+| `subtitle2` | p    | 0.875rem  | 500         |
+| `body1`     | p    | 1rem      | 400         |
+| `body2`     | p    | 0.875rem  | 400         |
+| `caption`   | span | 0.75rem   | 400         |
+| `overline`  | span | 0.75rem   | 400         |
+
+If variant is not passed or is invalid, a safe span fallback is used with default styles.
 
 
-
-
+⚙️ Props
+| Prop           | Type                            | Default | Description                                 |
+| -------------- | ------------------------------- | ------- | ------------------------------------------- |
+| `variant`      | string                          | `body1` | Typography style variant                    |
+| `as`           | string / element                | —       | Custom tag to render instead of variant tag |
+| `color`        | string                          | `#000`  | Text color                                  |
+| `align`        | `"left" \| "center" \| "right"` | `left`  | Text alignment                              |
+| `fontWeight`   | number                          | —       | Override default font weight                |
+| `gutterBottom` | boolean                         | `false` | Adds bottom margin                          |
+| `noWrap`       | boolean                         | `false` | Prevents wrapping and adds ellipsis         |
+| `style`        | object                          | `{}`    | Inline styles override                      |
+| `children`     | node                            | —       | The content inside                          |
 
 
 

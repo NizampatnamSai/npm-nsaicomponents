@@ -90,6 +90,7 @@ export { default as Button } from "./CustomComponents/Button";
 export { default as Modal } from "./CustomComponents/Modal";
 export { default as CustomBackdrop } from "./CustomComponents/CustomBackdrop";
 export { default as Captcha } from "./CustomComponents/Captcha";
+export { default as Typography } from "./CustomComponents/Typography";
 // export { default as Dialog } from "./CustomComponents/Dialog";
 export {
   Dialog,

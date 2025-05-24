@@ -1,6 +1,6 @@
 {
   "name": "nsaicomponents",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "Lightweight, customizable UI components for React including Modal, Button, and Loader",
   "main": "dist/main.js",
   "module": "dist/main.js",

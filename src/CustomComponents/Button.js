@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
+
+const generateClassName = () =>
+  `btn-${Math.random().toString(36).substr(2, 9)}`;
 
 const defaultColors = {
   primary: "#1976d2",
@@ -11,24 +14,31 @@ const variantStyles = (variant, colorValue) => {
   switch (variant) {
     case "contained":
       return {
+        base: {
+          color: "#fff",
+          border: "none",
+          boxShadow:
+            "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        },
         backgroundColor: colorValue,
-        color: "#fff",
-        border: "none",
-        boxShadow:
-          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+        textColor: "#fff",
       };
     case "outlined":
       return {
-        backgroundColor: "transparent",
-        color: colorValue,
-        border: `1px solid ${colorValue}`,
+        base: {
+          backgroundColor: "transparent",
+          border: `1px solid ${colorValue}`,
+        },
+        textColor: colorValue,
       };
     case "text":
     default:
       return {
-        backgroundColor: "transparent",
-        color: colorValue,
-        border: "none",
+        base: {
+          backgroundColor: "transparent",
+          border: "none",
+        },
+        textColor: colorValue,
       };
   }
 };
@@ -56,25 +66,55 @@ const sizeStyles = {
 
 const Button = ({
   children,
-  variant = "contained", // 'text' | 'outlined' | 'contained'
-  color = "primary", // can be a string like 'primary' or custom like '#f44336'
-  size = "medium", // 'small' | 'medium' | 'large'
+  variant = "contained",
+  color = "primary",
+  size = "medium",
   type = "button",
   style = {},
   fullWidth = false,
   disabled = false,
   loading = false,
-  loadingPosition = "start", // 'start' | 'end' | 'center'
+  loadingPosition = "start",
   hideChildrenWhenLoading = false,
   textDecoration = "none",
   textTransform = "uppercase",
+  hoverBackgroundColor,
+  hoverColor,
   onClick,
+  bgColor = defaultColors.primary,
   ...props
 }) => {
+  const classNameRef = useRef(generateClassName());
+  const className = classNameRef.current;
   const isDisabled = disabled || loading;
 
-  // Resolve color value
-  const colorValue = defaultColors[color] || color;
+  const colorValue = bgColor || defaultColors[color] || color;
+  const { base, backgroundColor, textColor } = variantStyles(
+    variant,
+    colorValue
+  );
+
+  const buttonStyle = {
+    ...base,
+    ...sizeStyles[size],
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent:
+      loading && loadingPosition === "center" ? "center" : "center",
+    width: fullWidth ? "100%" : "auto",
+    borderRadius: 4,
+    cursor: isDisabled ? "not-allowed" : "pointer",
+    opacity: isDisabled ? 0.5 : 1,
+    transition: "all 0.2s ease",
+    textDecoration,
+    textTransform,
+    lineHeight: 1.5,
+    fontFamily: "inherit",
+    // EXCLUDE backgroundColor and color if hover props are set
+    ...(hoverBackgroundColor ? {} : { backgroundColor }),
+    ...(hoverColor ? {} : { color: textColor }),
+    ...style,
+  };
 
   const Spinner = (
     <span
@@ -105,6 +145,24 @@ const Button = ({
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
+
+          .${className} {
+            ${
+              hoverBackgroundColor
+                ? `background-color: ${backgroundColor};`
+                : ""
+            }
+            ${hoverColor ? `color: ${textColor};` : ""}
+          }
+
+          .${className}:hover {
+            ${
+              hoverBackgroundColor
+                ? `background-color: ${hoverBackgroundColor};`
+                : ""
+            }
+            ${hoverColor ? `color: ${hoverColor};` : ""}
+          }
         `}
       </style>
 
@@ -113,24 +171,8 @@ const Button = ({
         disabled={isDisabled}
         aria-busy={loading}
         onClick={onClick}
-        style={{
-          ...variantStyles(variant, colorValue),
-          ...sizeStyles[size],
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent:
-            loading && loadingPosition === "center" ? "center" : "center",
-          width: fullWidth ? "100%" : "auto",
-          borderRadius: 4,
-          cursor: isDisabled ? "not-allowed" : "pointer",
-          opacity: isDisabled ? 0.5 : 1,
-          transition: "all 0.2s ease",
-          textDecoration,
-          textTransform,
-          lineHeight: 1.5,
-          fontFamily: "inherit",
-          ...style,
-        }}
+        className={className}
+        style={buttonStyle}
         {...props}
       >
         {loading && loadingPosition === "start" && Spinner}

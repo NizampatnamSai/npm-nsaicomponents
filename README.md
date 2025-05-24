@@ -52,8 +52,10 @@ variant="contained" // "text" | "outlined" | "contained"
 color="primary" // "primary" | "secondary" | "inherit" | custom (e.g. "#f44336")
 size="medium"
 loading={false}
+bgColor='red'
 fullWidth={false}
 disabled={false}
+
 onClick={() => alert("Clicked")}
 
 > Click Me
@@ -61,21 +63,25 @@ onClick={() => alert("Clicked")}
 
 📦 API Reference: Button
 
-| Prop                      | Type                                                   | Default       | Description                        |
-| ------------------------- | ------------------------------------------------------ | ------------- | ---------------------------------- |
-| `variant`                 | `"text" \| "outlined" \| "contained"`                  | `"contained"` | Button style variant               |
-| `color`                   | `"primary" \| "secondary" \| "inherit"` or custom hex  | `"primary"`   | Built-in or custom color support   |
-| `size`                    | `"small" \| "medium" \| "large"`                       | `"medium"`    | Size and padding                   |
-| `fullWidth`               | `boolean`                                              | `false`       | Makes button take 100% width       |
-| `disabled`                | `boolean`                                              | `false`       | Disables interaction               |
-| `loading`                 | `boolean`                                              | `false`       | Shows loading spinner inside       |
-| `loadingPosition`         | `"start" \| "end" \| "center"`                         | `"start"`     | Where to show the loader           |
-| `hideChildrenWhenLoading` | `boolean`                                              | `false`       | Hide button content when loading   |
-| `type`                    | `"button" \| "submit" \| "reset"`                      | `"button"`    | HTML button type                   |
-| `textTransform`           | `"none" \| "capitalize" \| "uppercase" \| "lowercase"` | `"uppercase"` | Controls text casing               |
-| `textDecoration`          | `string`                                               | `"none"`      | Controls text underline/decoration |
-| `style`                   | `React.CSSProperties`                                  | `{}`          | Custom inline styles               |
-| `onClick`                 | `function`                                             | —             | Click handler                      |
+| Prop                      | Type                                                   | Default       | Description                                   |
+| ------------------------- | ------------------------------------------------------ | ------------- | --------------------------------------------- |
+| `variant`                 | `"text" \| "outlined" \| "contained"`                  | `"contained"` | Button style variant                          |
+| `color`                   | `"primary" \| "secondary" \| "inherit"` or hex string  | `"primary"`   | Built-in color key or custom hex color        |
+| `bgColor`                 | `string`                                               | —             | Overrides background color (even for `color`) |
+| `size`                    | `"small" \| "medium" \| "large"`                       | `"medium"`    | Button size and padding                       |
+| `fullWidth`               | `boolean`                                              | `false`       | Makes button span full width                  |
+| `disabled`                | `boolean`                                              | `false`       | Disables button interaction                   |
+| `loading`                 | `boolean`                                              | `false`       | Shows a loading spinner                       |
+| `loadingPosition`         | `"start" \| "end" \| "center"`                         | `"start"`     | Position of the loading spinner               |
+| `hideChildrenWhenLoading` | `boolean`                                              | `false`       | Hides button content while loading            |
+| `type`                    | `"button" \| "submit" \| "reset"`                      | `"button"`    | HTML button type                              |
+| `textTransform`           | `"none" \| "capitalize" \| "uppercase" \| "lowercase"` | `"uppercase"` | CSS text-transform                            |
+| `textDecoration`          | `string`                                               | `"none"`      | CSS text-decoration (e.g. "underline")        |
+| `hoverBackgroundColor`    | `string`                                               | —             | Custom hover background color                 |
+| `hoverColor`              | `string`                                               | —             | Custom hover text color                       |
+| `style`                   | `React.CSSProperties`                                  | `{}`          | Inline styles (excluding `:hover`)            |
+| `onClick`                 | `function`                                             | —             | Click handler                                 |
+
 
 🪟 Modal Usage (Web)
 import { Modal } from "nsaicomponents";
@@ -263,6 +269,33 @@ User-friendly design similar to Indian Post
 Error display support
 
 Supports all React versions
+
+
+
+
+
+📦 API Reference
+
+
+| Prop           | Type        | Default   | Description                                      |          |         |           |
+| -------------- | ----------- | --------- | ------------------------------------------------ | -------- | ------- | --------- |
+| `variant`      | `string`    | `"body1"` | Typography style (`h1`–`h6`, `body1`, `caption`) |          |         |           |
+| `as`           | `string`    | —         | Override HTML tag                                |          |         |           |
+| `children`     | `ReactNode` | —         | Text or elements inside                          |          |         |           |
+| `color`        | `string`    | `"#000"`  | Text color                                       |          |         |           |
+| `fontWeight`   | `number`    | auto      | Font weight override                             |          |         |           |
+| `align`        | `string`    | `"left"`  | `left`                                           | `center` | `right` | `justify` |
+| `gutterBottom` | `boolean`   | `false`   | Adds margin-bottom                               |          |         |           |
+| `noWrap`       | `boolean`   | `false`   | Truncates long text with ellipsis                |          |         |           |
+| `style`        | `object`    | `{}`      | Additional styles                                |          |         |           |
+
+
+
+
+
+
+
+
 
 📃 License
 ISC

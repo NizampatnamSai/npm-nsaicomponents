@@ -14,7 +14,7 @@ npm install nsaicomponents
 
 ## 🌟 Loader Usage (Web)
 
-```jsx
+`````jsx
 
 import Loader from "nsaicomponents";
 
@@ -216,7 +216,53 @@ Easily extendable with inline styles or by wrapping components.
 
 
 
+## 🧩 Captcha Usage
 
+````jsx
+import Captcha from "nsaicomponents";
+
+<Captcha
+  length={6}
+  width={200}
+  height={50}
+  color="#222"
+  background="#f2f2f2"
+  fontSize={28}
+  onChange={(userInput, actualCaptcha) => {
+    if (userInput.toUpperCase() === actualCaptcha.toUpperCase()) {
+      alert("✅ Valid CAPTCHA");
+    } else {
+      alert("❌ Invalid CAPTCHA");
+    }
+  }}
+/>;
+
+📦 API Reference
+| Prop         | Type       | Default    | Description                                        |
+| ------------ | ---------- | ---------- | -------------------------------------------------- |
+| `length`     | `number`   | `6`        | Number of characters in the CAPTCHA                |
+| `onChange`   | `function` | `() => {}` | Callback that returns `(typedText, actualCaptcha)` |
+| `width`      | `number`   | `120`      | Width of the CAPTCHA canvas (px)                   |
+| `height`     | `number`   | `40`       | Height of the CAPTCHA canvas (px)                  |
+| `background` | `string`   | `#eef5f9`  | Canvas background color                            |
+| `fontSize`   | `number`   | `22`       | Font size of CAPTCHA characters (px)               |
+| `error`      | `boolean`  | `false`    | If `true`, displays error message below CAPTCHA    |
+
+
+⚠️ Error Handling
+When error={true} is passed, the following message appears below the CAPTCHA:
+
+Enter characters as displayed in image
+
+
+🔁 Features
+Refreshable image with distortion, rotation, and noise
+
+User-friendly design similar to Indian Post
+
+Error display support
+
+Supports all React versions
 
 📃 License
 ISC
@@ -227,4 +273,4 @@ Made with ❤️ by Nizampatnam Sai
 ---
 
 
-```
+`````

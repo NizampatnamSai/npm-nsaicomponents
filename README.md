@@ -1,6 +1,6 @@
 # nsaicomponents
 
-🌟 A customizable and lightweight component library for **React**, featuring loaders, buttons, modals, and backdrop overlays & Dialogs.
+🌟 A customizable and lightweight component library for **React**, featuring Modal, Button, Loader, Captcha, Backdrop, Dialog and Typography.
 
 ---
 
